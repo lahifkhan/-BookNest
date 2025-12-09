@@ -1,10 +1,16 @@
 import React from "react";
 import Banner from "./Banner/Banner";
+import Feature from "./Feature/Feature";
 
 const Home = () => {
   return (
-    <div className="bg-[#D0E1E7]">
-      <Banner></Banner>
+    <div className="">
+      <div>
+        <Banner></Banner>
+      </div>
+      <div className="">
+        <Feature></Feature>
+      </div>
     </div>
   );
 };

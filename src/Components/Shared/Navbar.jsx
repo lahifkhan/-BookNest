@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm w-11/12 mx-auto text-primary">
+    <div className="navbar bg-base-100  w-11/12 mx-auto text-primary">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,9 +41,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center">
           <img src={logo} className="w-10 h-10" alt="" />
-          <a className="btn btn-ghost text-xl text-primary font-bold">
-            BookNest
-          </a>
+          <a className=" text-xl text-primary font-bold">BookNest</a>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">

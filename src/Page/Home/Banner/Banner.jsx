@@ -29,19 +29,18 @@ const BannerSlider = () => {
   ];
 
   return (
-    <div className=" w-10/12 mx-auto  rounded-2xl">
+    <div className="w-11/12 mx-auto rounded-2xl bg-[#E2F3FF] overflow-hidden mt-5">
       <Swiper
         modules={[Pagination, Autoplay]}
-        navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
         loop={true}
-        className="rounded-2xl "
+        className="rounded-2xl"
       >
         {books.map((book) => (
           <SwiperSlide key={book.id}>
-            <div className="flex flex-col md:flex-row justify-between items-center  p-6 md:p-10 ">
-              {/* LEFT SIDE - TEXT */}
+            <div className="flex flex-col md:flex-row justify-between items-center p-6 md:p-10 min-h-[380px]">
+              {/* LEFT SIDE */}
               <div className="md:w-1/2 space-y-4">
                 <h1 className="text-3xl md:text-5xl font-bold text-primary">
                   {book.name}
@@ -50,18 +49,19 @@ const BannerSlider = () => {
                 <p className="text-gray-600 text-lg">{book.desc}</p>
 
                 <Link to="/all-books">
-                  <button className="px-6 btn  py-3 btn-secondary text-base-100 rounded-lg font-semibold transition">
+                  <button className="px-6 btn py-3 btn-secondary text-base-100 rounded-lg font-semibold transition">
                     View All Books
                   </button>
                 </Link>
               </div>
 
+              {/* RIGHT SIDE */}
               <div className="md:w-1/2 flex justify-center mt-6 md:mt-0">
-                <div className="p-10 bg-gray-100 rounded-xl shadow-md">
+                <div className="p-10 bg-gray-100 rounded-xl shadow-md h-80 flex items-center justify-center">
                   <img
                     src={book.img}
                     alt={book.name}
-                    className=" object-contain rounded-xl rotate-x-5 -rotate-y-20"
+                    className="w-56 h-72 object-contain rounded-xl rotate-x-5 -rotate-y-20"
                   />
                 </div>
               </div>
