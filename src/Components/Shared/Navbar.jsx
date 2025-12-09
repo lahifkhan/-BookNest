@@ -1,8 +1,16 @@
 import React from "react";
 import logo from "../../assets/open-book_12743688.png";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import useAuth from "../../Hook/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut, loading } = useAuth();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => toast.success("Account Logged Out"))
+      .catch((err) => toast.error(err));
+  };
   return (
     <div className="navbar bg-base-100  w-11/12 mx-auto text-primary">
       <div className="navbar-start">
@@ -58,8 +66,38 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end flex gap-1">
-        <button className="btn btn-soft btn-primary">Login</button>
-        <button className="btn btn-soft btn-primary">Register</button>
+        {loading ? (
+          <span className="loading loading-spinner loading-md"></span>
+        ) : user ? (
+          <div className="flex gap-3 items-center">
+            <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
+              <img
+                className="w-10 h-10 rounded-full border p-0.5 border-primary cursor-pointer"
+                src={user.photoURL}
+                alt="profile"
+              />
+            </div>
+
+            <button
+              onClick={handleLogOut}
+              className="btn btn-secondary font-bold"
+            >
+              Log Out
+            </button>
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            <Link to="/logIn" className="btn btn-primary text-white font-bold">
+              LogIn
+            </Link>
+            <Link
+              to="/register"
+              className="btn btn-primary text-white font-bold"
+            >
+              Sign Up
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
