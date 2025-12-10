@@ -3,6 +3,7 @@ import Banner from "./Banner/Banner";
 import Feature from "./Feature/Feature";
 import WhyChooseUs from "./WhyChoseUs/WhyChoseUs";
 import Coverage from "./Coverage/Coverage";
+import ClientTestimonial from "./Testimonial/ClientTestimonial";
 
 const Home = () => {
   return (
@@ -16,6 +17,8 @@ const Home = () => {
       <Coverage></Coverage>
 
       <WhyChooseUs></WhyChooseUs>
+
+      <ClientTestimonial></ClientTestimonial>
     </div>
   );
 };

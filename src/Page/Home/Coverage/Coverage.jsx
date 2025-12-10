@@ -28,14 +28,14 @@ const Coverage = () => {
   const position = [23.685, 90.3563];
 
   return (
-    <section className="px-4 md:px-16 py-20 bg-gray-50">
+    <section className="px-4 md:px-16 py-20">
       {/* Heading */}
       <div className="text-center mb-6">
-        <p className="text-primary font-bold text-lg">Our Coverage</p>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-800 mt-2">
+        <p className="text-secondary font-bold text-lg">Our Coverage</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-primary mt-2">
           Delivering Across Bangladesh
         </h2>
-        <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+        <p className="text-accent mt-2 max-w-2xl mx-auto">
           Check our service areas and find out if we deliver to your district.
         </p>
       </div>
@@ -88,7 +88,7 @@ const Coverage = () => {
           <div className="relative w-[260px] h-[260px] md:w-[340px] md:h-[340px] lg:w-[600px] lg:h-[600px]">
             <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
 
-            <div className="relative w-full h-full bg-white shadow-md rounded-3xl p-4">
+            <div className="relative w-full h-full bg-base-100 shadow-md rounded-3xl p-4">
               <img
                 src={deliveryImg}
                 className="w-full h-full object-cover rounded-2xl"
