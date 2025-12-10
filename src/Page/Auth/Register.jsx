@@ -1,12 +1,13 @@
 import React from "react";
-
-import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
-
+import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import SocialLogin from "./SocialLogin";
-import useAuth from "../../Hook/useAuth";
 import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+
+import useAuth from "../../Hook/useAuth";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
+import SocialLogin from "./SocialLogin";
 
 const Register = () => {
   const {
@@ -14,156 +15,146 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const { createUser, profileUpdate } = useAuth();
-  //   const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
 
-  const location = useLocation();
   const navigate = useNavigate();
-  const registerSubmit = (data) => {
-    console.log(data);
+  const location = useLocation();
 
-    const profileImg = data.photo[0];
+  const userMutation = useMutation({
+    mutationFn: async (userInfo) => {
+      const res = await axiosSecure.post("/users", userInfo);
+      return res.data;
+    },
+    onSuccess: () => {
+      toast.success("Account created successfully!");
+      navigate(location?.state || "/");
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
 
-    createUser(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
+  const registerSubmit = async (data) => {
+    try {
+      // Create Firebase user
+      const result = await createUser(data.email, data.password);
+      console.log("Firebase user created:", result.user);
 
-        // conver photo to form data
-        const formData = new FormData();
-        formData.append("image", profileImg);
-        // img api url
-        const img_api_url = `https://api.imgbb.com/1/upload?key=${
-          import.meta.env.VITE_image_host
-        }`;
+      //  image to IMGBB
+      const formData = new FormData();
+      formData.append("image", data.photo[0]);
 
-        axios.post(img_api_url, formData).then((res) => {
-          console.log(res.data.data.display_url);
-          const photoURL = res.data.data.display_url;
+      const imgURL = `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_image_host
+      }`;
+      const imgRes = await axios.post(imgURL, formData);
 
-          const userInfo = {
-            email: data.email,
-            displayName: data.name,
-            photoURL: photoURL,
-          };
+      const photoURL = imgRes.data.data.display_url;
 
-          //   axiosSecure.post("/user", userInfo).then((res) => {
-          //     console.log(res.data);
-          //   });
-
-          const userProfile = {
-            displayName: data.name,
-            photoURL: res.data.data.url,
-          };
-          profileUpdate(userProfile)
-            .then(() => {
-              console.log("profile update done");
-            })
-            .catch((err) => {
-              console.log(err);
-              toast.error(err.code);
-            });
-        });
-
-        navigate(location?.state || "/");
-        toast.success("Account created successfully");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(err.code);
+      // 3 Update Firebase profile
+      await profileUpdate({
+        displayName: data.name,
+        photoURL,
       });
+
+      //  Post user into database (TanStack mutation)
+      const userInfo = {
+        email: data.email,
+        displayName: data.name,
+        photoURL,
+      };
+
+      userMutation.mutate(userInfo);
+    } catch (err) {
+      console.log(err);
+      toast.error(err.code || "Registration failed");
+    }
   };
+
   return (
-    <div>
-      <div className="card w-full max-w-md shrink-0 md:ml-8">
-        <div className="card-body ">
-          <h1 className="text-3xl font-bold">Create an Account</h1>
-          <p>Register with BookNest</p>
-          <form onSubmit={handleSubmit(registerSubmit)}>
-            <fieldset className="fieldset">
-              {/* name */}
-              <label className="label text-black">Name</label>
-              <input
-                type="text"
-                name="name"
-                {...register("name", { required: true })}
-                className="input w-full"
-                placeholder="Name"
-              />
-              {errors.name?.type === "required" && (
-                <p className="text-red-500">Name must required</p>
-              )}
+    <div className="card w-full max-w-md shrink-0 md:ml-8 mx-auto">
+      <div className="card-body">
+        <h1 className="text-3xl font-bold">Create an Account</h1>
+        <p className="mb-4">Register with BookNest</p>
 
-              <label className="label text-black">Photo</label>
-              <input
-                type="file"
-                name="phot"
-                {...register("photo", { required: true })}
-                className="file-input w-full"
-                placeholder="Name"
-              />
+        <form onSubmit={handleSubmit(registerSubmit)}>
+          <fieldset className="fieldset">
+            {/* NAME */}
+            <label className="label text-black">Name</label>
+            <input
+              type="text"
+              {...register("name", { required: true })}
+              className="input w-full"
+              placeholder="Your Name"
+            />
+            {errors.name?.type === "required" && (
+              <p className="text-red-500">Name is required</p>
+            )}
 
-              {errors.photo?.type === "required" && (
-                <p className="text-red-500">Name must required</p>
-              )}
+            {/* PHOTO */}
+            <label className="label text-black">Photo</label>
+            <input
+              type="file"
+              {...register("photo", { required: true })}
+              className="file-input w-full"
+            />
+            {errors.photo?.type === "required" && (
+              <p className="text-red-500">Photo is required</p>
+            )}
 
-              {/* email */}
-              <label className="label text-black">Email</label>
-              <input
-                type="email"
-                className="input w-full"
-                name="email"
-                placeholder="Email"
-                {...register("email", { required: true })}
-              />
+            {/* EMAIL */}
+            <label className="label text-black">Email</label>
+            <input
+              type="email"
+              {...register("email", { required: true })}
+              className="input w-full"
+              placeholder="Email"
+            />
+            {errors.email && <p className="text-red-500">Email is required</p>}
 
-              {errors.email?.type === "required" && (
-                <p className="text-red-500">Email must be required</p>
-              )}
+            {/* PASSWORD */}
+            <label className="label text-black">Password</label>
+            <input
+              type="password"
+              {...register("password", {
+                required: true,
+                pattern: /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/,
+              })}
+              className="input w-full"
+              placeholder="Password"
+            />
+            {errors.password?.type === "required" && (
+              <p className="text-red-500">Password is required</p>
+            )}
+            {errors.password?.type === "pattern" && (
+              <p className="text-red-500">
+                Must be 6 characters, include uppercase & lowercase
+              </p>
+            )}
 
-              {/* password */}
-              <label className="label text-black">Password</label>
-              <input
-                type="password"
-                className="input w-full"
-                placeholder="Password"
-                name="password"
-                {...register("password", {
-                  required: true,
-                  pattern: /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/,
-                })}
-              />
+            <div>
+              <a className="link link-hover">Forgot password?</a>
+            </div>
 
-              {errors.password?.type === "required" && (
-                <p className="text-red-500">Password must be required</p>
-              )}
+            <button
+              className="btn btn-primary w-full mt-4"
+              type="submit"
+              disabled={userMutation.isPending}
+            >
+              {userMutation.isPending ? "Creating Account..." : "Register"}
+            </button>
+          </fieldset>
+        </form>
 
-              {errors.password?.type === "pattern" && (
-                <p className="text-red-500">
-                  Password must be 6 characters and one uppercase and lowercase
-                  letter
-                </p>
-              )}
+        <p>
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-500">
+            Login
+          </Link>
+        </p>
 
-              <div>
-                <a className="link link-hover">Forgot password?</a>
-              </div>
-              <div className="w-full">
-                <button className="btn btn-primary text-black w-full mt-4">
-                  Register
-                </button>
-              </div>
-            </fieldset>
-          </form>
-          <p>
-            Already have an account?
-            <Link to={"/login"} className="text-blue-500">
-              Log In
-            </Link>{" "}
-          </p>
-
-          <SocialLogin></SocialLogin>
-        </div>
+        <SocialLogin />
       </div>
     </div>
   );
