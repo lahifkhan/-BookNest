@@ -29,9 +29,12 @@ const features = [
 
 const Feature = () => {
   return (
-    <section className="mt-16">
-      {/* bg ONLY inside w-11/12 container */}
-      <div className="w-11/12 mx-auto bg-[#D0E1E7] rounded-xl py-8 px-4">
+    <section className="mt-16 w-11/12 mx-auto">
+      <p className=" text-primary font-bold text-xl mb-2">
+        Features of BookNest
+      </p>
+
+      <div className=" bg-[#D0E1E7] rounded-xl py-8 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {features.map((feature) => (
             <div
