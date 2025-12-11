@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from "react-router";
+import { Outlet, NavLink, useNavigate } from "react-router";
 import {
   FaBook,
   FaUser,
@@ -8,9 +8,20 @@ import {
   FaUsersCog,
   FaFileInvoice,
   FaUserCog,
+  FaHome,
+  FaSignOutAlt,
 } from "react-icons/fa";
-
+import useAuth from "../Hook/useAuth";
+import logoImg from "../assets/open-book_12743688.png";
 export default function DashboardLayout() {
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logOut();
+    navigate("/");
+  };
+
   return (
     <div className="drawer lg:drawer-open min-h-screen bg-base-100">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -50,10 +61,29 @@ export default function DashboardLayout() {
       {/* Sidebar */}
       <div className="drawer-side">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-        <aside className="w-72 bg-base-200 min-h-full p-4 flex flex-col">
-          <h2 className="text-lg font-bold mb-4">Menu</h2>
 
-          <ul className="menu space-y-2">
+        <aside className="w-72 bg-base-200 min-h-full p-4 flex flex-col">
+          {/* LOGO + WEBSITE NAME */}
+          <div className="flex items-center gap-3 mb-6 px-2">
+            <img className="h-10 w-10" src={logoImg} alt="" />
+            <h1 className="text-2xl font-bold">BookNest</h1>
+          </div>
+
+          {/* HOME BUTTON */}
+          <ul className="menu space-y-2 mb-2">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                <FaHome /> Home
+              </NavLink>
+            </li>
+          </ul>
+
+          <h2 className="text-lg font-bold mb-2">Menu</h2>
+
+          <ul className="menu space-y-2 flex-1">
             {/* USER LINKS */}
             <li>
               <NavLink
@@ -136,6 +166,14 @@ export default function DashboardLayout() {
               </NavLink>
             </li>
           </ul>
+
+          {/* LOGOUT BUTTON */}
+          <button
+            onClick={handleLogout}
+            className="btn btn-error text-white mt-4 flex items-center gap-2"
+          >
+            <FaSignOutAlt /> Logout
+          </button>
         </aside>
       </div>
     </div>

@@ -7,6 +7,8 @@ import DashboardLayouts from "../Layouts/DashboardLayouts";
 import AddBook from "../Page/Dashboard/AddBook";
 import MyProfile from "../Page/Dashboard/MyProfile";
 import ManageUser from "../Page/Dashboard/ManageUser";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoutes";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +32,11 @@ const router = createBrowserRouter([
 
   {
     path: "dashboard",
-    Component: DashboardLayouts,
+    element: (
+      <PrivateRoute>
+        <DashboardLayouts></DashboardLayouts>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "add-book",
@@ -42,7 +48,11 @@ const router = createBrowserRouter([
       },
       {
         path: "manage-user",
-        Component: ManageUser,
+        element: (
+          <AdminRoute>
+            <ManageUser></ManageUser>
+          </AdminRoute>
+        ),
       },
     ],
   },
