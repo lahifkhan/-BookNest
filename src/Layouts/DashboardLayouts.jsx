@@ -113,7 +113,7 @@ export default function DashboardLayout() {
             {/* ADMIN LINKS */}
             <li>
               <NavLink
-                to="/dashboard/admin/users"
+                to="/dashboard/manage-user"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 <FaUsersCog /> All Users

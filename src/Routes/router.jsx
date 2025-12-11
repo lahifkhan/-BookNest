@@ -6,6 +6,7 @@ import Register from "../Page/Auth/Register";
 import DashboardLayouts from "../Layouts/DashboardLayouts";
 import AddBook from "../Page/Dashboard/AddBook";
 import MyProfile from "../Page/Dashboard/MyProfile";
+import ManageUser from "../Page/Dashboard/ManageUser";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "my-profile",
         Component: MyProfile,
+      },
+      {
+        path: "manage-user",
+        Component: ManageUser,
       },
     ],
   },
