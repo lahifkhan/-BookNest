@@ -13,9 +13,11 @@ import {
 } from "react-icons/fa";
 import useAuth from "../Hook/useAuth";
 import logoImg from "../assets/open-book_12743688.png";
+import useRole from "../Hook/useRole";
 export default function DashboardLayout() {
   const { logOut } = useAuth();
   const navigate = useNavigate();
+  const { role } = useRole();
 
   const handleLogout = () => {
     logOut();
@@ -101,34 +103,30 @@ export default function DashboardLayout() {
                 <FaFileInvoice /> Invoices
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/dashboard/user/profile"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <FaUserCog /> My Profile
-              </NavLink>
-            </li>
-
-            <div className="divider">Librarian</div>
 
             {/* LIBRARIAN LINKS */}
-            <li>
-              <NavLink
-                to="/dashboard/add-book"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <FaPlus /> Add Book
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/librarian/my-books"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <FaBook /> My Books
-              </NavLink>
-            </li>
+
+            {role === "librarian" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/add-book"
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    <FaPlus /> Add Book
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/librarian/my-books"
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    <FaBook /> My Books
+                  </NavLink>
+                </li>
+              </>
+            )}
+
             <li>
               <NavLink
                 to="/dashboard/librarian/orders"
@@ -138,25 +136,26 @@ export default function DashboardLayout() {
               </NavLink>
             </li>
 
-            <div className="divider">Admin</div>
-
-            {/* ADMIN LINKS */}
-            <li>
-              <NavLink
-                to="/dashboard/manage-user"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <FaUsersCog /> All Users
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/admin/manage-books"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <FaBook /> Manage Books
-              </NavLink>
-            </li>
+            {role === "admin" && (
+              <li>
+                <NavLink
+                  to="/dashboard/manage-user"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  <FaUsersCog /> All Users
+                </NavLink>
+              </li>
+            )}
+            {role === "admin" && (
+              <li>
+                <NavLink
+                  to="/dashboard/admin/manage-books"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  <FaBook /> Manage Books
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink
                 to="/dashboard/my-profile"
