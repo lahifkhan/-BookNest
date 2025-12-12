@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoutes";
 import MyBooks from "../Page/Dashboard/MyBooks";
 import EditBook from "../Page/Dashboard/EditBook";
+import AllBooks from "../Page/AllBooks/AllBooks";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+
+      {
+        path: "/books",
+        Component: AllBooks,
       },
     ],
   },

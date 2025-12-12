@@ -15,7 +15,7 @@ const MyBooks = () => {
     isPending,
   } = useQuery({
     queryKey: ["myBooks", user?.email],
-    enabled: !!user?.email, // ensure user is loaded first
+    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/my-books/${user.email}`);
       return res.data;

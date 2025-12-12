@@ -29,7 +29,6 @@ const Coverage = () => {
 
   return (
     <section className="px-4 md:px-16 py-20">
-      {/* Heading */}
       <div className="text-center mb-6">
         <p className="text-secondary font-bold text-lg">Our Coverage</p>
         <h2 className="text-3xl md:text-4xl font-extrabold text-primary mt-2">
@@ -55,9 +54,7 @@ const Coverage = () => {
         </button>
       </form>
 
-      {/* Two-column layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* LEFT: Map */}
         <div className="w-full h-[500px] md:h-[600px] rounded-xl overflow-hidden shadow-md">
           <MapContainer
             center={position}
@@ -83,7 +80,6 @@ const Coverage = () => {
           </MapContainer>
         </div>
 
-        {/* RIGHT: Image / Lottie */}
         <div className="flex justify-center">
           <div className="relative w-[260px] h-[260px] md:w-[340px] md:h-[340px] lg:w-[600px] lg:h-[600px]">
             <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>

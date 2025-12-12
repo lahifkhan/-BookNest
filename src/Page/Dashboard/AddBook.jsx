@@ -21,7 +21,7 @@ const AddBook = () => {
     try {
       // Upload image to ImgBB
       const formData = new FormData();
-      formData.append("image", data.image[0]); // data.photo = file input
+      formData.append("image", data.image[0]);
 
       const imgURL = `https://api.imgbb.com/1/upload?key=${
         import.meta.env.VITE_image_host
@@ -84,7 +84,7 @@ const AddBook = () => {
       <h2 className="text-2xl font-bold mb-6">Add a New Book</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Book Name */}
+        {/* book Name */}
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text font-medium">Book Name</span>
@@ -100,7 +100,7 @@ const AddBook = () => {
           )}
         </div>
 
-        {/* Author */}
+        {/* author */}
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text font-medium">Author</span>
@@ -116,7 +116,7 @@ const AddBook = () => {
           )}
         </div>
 
-        {/* Price */}
+        {/* price */}
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text font-medium">Price</span>
