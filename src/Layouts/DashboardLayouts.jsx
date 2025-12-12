@@ -124,17 +124,16 @@ export default function DashboardLayout() {
                     <FaBook /> My Books
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/librarian/orders"
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    <FaList /> Orders
+                  </NavLink>
+                </li>
               </>
             )}
-
-            <li>
-              <NavLink
-                to="/dashboard/librarian/orders"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <FaList /> Orders
-              </NavLink>
-            </li>
 
             {role === "admin" && (
               <li>

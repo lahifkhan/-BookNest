@@ -9,6 +9,8 @@ import MyProfile from "../Page/Dashboard/MyProfile";
 import ManageUser from "../Page/Dashboard/ManageUser";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoutes";
+import MyBooks from "../Page/Dashboard/MyBooks";
+import EditBook from "../Page/Dashboard/EditBook";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,16 @@ const router = createBrowserRouter([
       {
         path: "add-book",
         Component: AddBook,
+      },
+
+      {
+        path: "librarian/my-books",
+        Component: MyBooks,
+      },
+
+      {
+        path: "edit-book/:id",
+        Component: EditBook,
       },
       {
         path: "my-profile",
