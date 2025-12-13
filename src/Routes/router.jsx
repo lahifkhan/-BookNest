@@ -12,6 +12,9 @@ import AdminRoute from "./AdminRoutes";
 import MyBooks from "../Page/Dashboard/MyBooks";
 import EditBook from "../Page/Dashboard/EditBook";
 import AllBooks from "../Page/AllBooks/AllBooks";
+import BookDetails from "../Page/AllBooks/BookDetails";
+import MyOrders from "../Page/Dashboard/Orders/MyOrders";
+import PaymentSuccess from "../Page/Dashboard/Payment/PaymentSuccess";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/books",
         Component: AllBooks,
+      },
+      {
+        path: "/book-details/:id",
+        Component: BookDetails,
       },
     ],
   },
@@ -46,6 +53,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "user/orders",
+        Component: MyOrders,
+      },
       {
         path: "add-book",
         Component: AddBook,
@@ -71,6 +82,10 @@ const router = createBrowserRouter([
             <ManageUser></ManageUser>
           </AdminRoute>
         ),
+      },
+      {
+        path: "payment-success",
+        Component: PaymentSuccess,
       },
     ],
   },
