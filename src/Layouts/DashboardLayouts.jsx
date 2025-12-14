@@ -11,6 +11,8 @@ import {
   FaHome,
   FaSignOutAlt,
 } from "react-icons/fa";
+import { BsFillBagHeartFill } from "react-icons/bs";
+
 import useAuth from "../Hook/useAuth";
 import logoImg from "../assets/open-book_12743688.png";
 import useRole from "../Hook/useRole";
@@ -101,6 +103,15 @@ export default function DashboardLayout() {
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 <FaFileInvoice /> Invoices
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/user/wishlists"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                <BsFillBagHeartFill />
+                My Wishlists
               </NavLink>
             </li>
 

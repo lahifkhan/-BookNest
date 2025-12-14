@@ -19,6 +19,7 @@ import PaymentCancel from "../Page/Dashboard/Payment/PaymentCancel";
 import Invoices from "../Page/Dashboard/Invoices/Invoices";
 import LibrarianOrders from "../Page/Dashboard/Orders/LibrarianOrders";
 import AdminManageBooks from "../Page/Dashboard/ManageBooks/AdminManageBooks";
+import Wishlist from "../Page/Dashboard/Wishlists/wishlist";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "user/invoices",
         Component: Invoices,
+      },
+      {
+        path: "user/wishlists",
+        Component: Wishlist,
       },
       {
         path: "librarian/add-book",
