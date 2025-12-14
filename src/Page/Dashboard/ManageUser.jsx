@@ -119,7 +119,7 @@ const ManageUser = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg shadow-sm ">
+      <div className="overflow-x-auto rounded-lg shadow-sm bg-base-100">
         <table className="table">
           <thead className="bg-base-200">
             <tr className="text-base">

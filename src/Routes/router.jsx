@@ -18,6 +18,7 @@ import PaymentSuccess from "../Page/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../Page/Dashboard/Payment/PaymentCancel";
 import Invoices from "../Page/Dashboard/Invoices/Invoices";
 import LibrarianOrders from "../Page/Dashboard/Orders/LibrarianOrders";
+import AdminManageBooks from "../Page/Dashboard/ManageBooks/AdminManageBooks";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageUser></ManageUser>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin/manage-books",
+        element: (
+          <AdminRoute>
+            <AdminManageBooks></AdminManageBooks>
           </AdminRoute>
         ),
       },

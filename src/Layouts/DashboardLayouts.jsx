@@ -31,7 +31,7 @@ export default function DashboardLayout() {
       {/* Main Content */}
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <nav className="navbar bg-base-300 px-4 shadow-md">
+        <nav className="navbar bg-gradient-to-r from-primary to-secondary  text-white px-4 shadow-2xl">
           <label
             htmlFor="dashboard-drawer"
             className="btn btn-square btn-ghost lg:hidden"
@@ -55,16 +55,16 @@ export default function DashboardLayout() {
         </nav>
 
         {/* Page Content */}
-        <div className="p-6">
+        <div className="p-6 bg-[#D0E1E7] shadow-2xl h-full">
           <Outlet />
         </div>
       </div>
 
       {/* Sidebar */}
-      <div className="drawer-side">
+      <div className="drawer-side  bg-gradient-to-r from-primary to-secondary text-base-100">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 
-        <aside className="w-72 bg-base-200 min-h-full p-4 flex flex-col">
+        <aside className="w-72  min-h-full p-4 flex flex-col">
           {/* LOGO + WEBSITE NAME */}
           <div className="flex items-center gap-3 mb-6 px-2">
             <img className="h-10 w-10" src={logoImg} alt="" />
@@ -168,7 +168,7 @@ export default function DashboardLayout() {
           {/* LOGOUT BUTTON */}
           <button
             onClick={handleLogout}
-            className="btn btn-error text-white mt-4 flex items-center gap-2"
+            className="btn  mt-4 flex items-center gap-2"
           >
             <FaSignOutAlt /> Logout
           </button>
