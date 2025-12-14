@@ -4,6 +4,7 @@ import Feature from "./Feature/Feature";
 import WhyChooseUs from "./WhyChoseUs/WhyChoseUs";
 import Coverage from "./Coverage/Coverage";
 import ClientTestimonial from "./Testimonial/ClientTestimonial";
+import LatestBooks from "./LatestBooks/LatestBooks";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <div className="">
         <Feature></Feature>
       </div>
+      <LatestBooks></LatestBooks>
       <Coverage></Coverage>
 
       <WhyChooseUs></WhyChooseUs>
