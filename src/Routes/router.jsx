@@ -15,6 +15,8 @@ import AllBooks from "../Page/AllBooks/AllBooks";
 import BookDetails from "../Page/AllBooks/BookDetails";
 import MyOrders from "../Page/Dashboard/Orders/MyOrders";
 import PaymentSuccess from "../Page/Dashboard/Payment/PaymentSuccess";
+import PaymentCancel from "../Page/Dashboard/Payment/PaymentCancel";
+import Invoices from "../Page/Dashboard/Invoices/Invoices";
 
 const router = createBrowserRouter([
   {
@@ -58,7 +60,11 @@ const router = createBrowserRouter([
         Component: MyOrders,
       },
       {
-        path: "add-book",
+        path: "user/invoices",
+        Component: Invoices,
+      },
+      {
+        path: "librarian/add-book",
         Component: AddBook,
       },
 
@@ -86,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "payment-success",
         Component: PaymentSuccess,
+      },
+      {
+        path: "payment-cancelled",
+        Component: PaymentCancel,
       },
     ],
   },

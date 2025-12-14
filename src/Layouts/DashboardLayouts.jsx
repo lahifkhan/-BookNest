@@ -110,7 +110,7 @@ export default function DashboardLayout() {
               <>
                 <li>
                   <NavLink
-                    to="/dashboard/add-book"
+                    to="/dashboard/librarian/add-book"
                     className={({ isActive }) => (isActive ? "active" : "")}
                   >
                     <FaPlus /> Add Book
