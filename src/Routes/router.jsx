@@ -13,10 +13,11 @@ import MyBooks from "../Page/Dashboard/MyBooks";
 import EditBook from "../Page/Dashboard/EditBook";
 import AllBooks from "../Page/AllBooks/AllBooks";
 import BookDetails from "../Page/AllBooks/BookDetails";
-import MyOrders from "../Page/Dashboard/Orders/MyOrders";
+import MyOrders from "../Page/Dashboard/MyOrders/MyOrders";
 import PaymentSuccess from "../Page/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../Page/Dashboard/Payment/PaymentCancel";
 import Invoices from "../Page/Dashboard/Invoices/Invoices";
+import LibrarianOrders from "../Page/Dashboard/Orders/LibrarianOrders";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "edit-book/:id",
         Component: EditBook,
+      },
+      {
+        path: "librarian/orders",
+        Component: LibrarianOrders,
       },
       {
         path: "my-profile",
