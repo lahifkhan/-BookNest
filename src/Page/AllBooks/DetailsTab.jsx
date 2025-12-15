@@ -29,7 +29,7 @@ const DetailsTab = ({ book }) => {
 
       <div className="p-6">
         {activeTab === "description" && (
-          <p className="text-gray-700">{book.description}</p>
+          <p className="text-accent">{book.description}</p>
         )}
 
         {activeTab === "custom" && (

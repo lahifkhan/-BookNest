@@ -20,6 +20,8 @@ import Invoices from "../Page/Dashboard/Invoices/Invoices";
 import LibrarianOrders from "../Page/Dashboard/Orders/LibrarianOrders";
 import AdminManageBooks from "../Page/Dashboard/ManageBooks/AdminManageBooks";
 import Wishlist from "../Page/Dashboard/Wishlists/wishlist";
+import LibrarianRoutes from "./LibrarianRoutes";
+import statistic from "../Page/Dashboard/Statistic/statistic";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,10 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        Component: statistic,
+      },
+      {
         path: "user/orders",
         Component: MyOrders,
       },
@@ -72,21 +78,37 @@ const router = createBrowserRouter([
       },
       {
         path: "librarian/add-book",
-        Component: AddBook,
+        element: (
+          <LibrarianRoutes>
+            <AddBook></AddBook>
+          </LibrarianRoutes>
+        ),
       },
 
       {
         path: "librarian/my-books",
-        Component: MyBooks,
+        element: (
+          <LibrarianRoutes>
+            <MyBooks></MyBooks>
+          </LibrarianRoutes>
+        ),
       },
 
       {
         path: "edit-book/:id",
-        Component: EditBook,
+        element: (
+          <LibrarianRoutes>
+            <EditBook></EditBook>
+          </LibrarianRoutes>
+        ),
       },
       {
         path: "librarian/orders",
-        Component: LibrarianOrders,
+        element: (
+          <LibrarianRoutes>
+            <LibrarianOrders></LibrarianOrders>
+          </LibrarianRoutes>
+        ),
       },
       {
         path: "my-profile",

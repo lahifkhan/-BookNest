@@ -89,31 +89,35 @@ export default function DashboardLayout() {
 
           <ul className="menu space-y-2 flex-1">
             {/* USER LINKS */}
-            <li>
-              <NavLink
-                to="/dashboard/user/orders"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <FaShoppingCart /> My Orders
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/user/invoices"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <FaFileInvoice /> Invoices
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/user/wishlists"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <BsFillBagHeartFill />
-                My Wishlists
-              </NavLink>
-            </li>
+            {role == "user" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/user/orders"
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    <FaShoppingCart /> My Orders
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/user/invoices"
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    <FaFileInvoice /> Invoices
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/user/wishlists"
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    <BsFillBagHeartFill />
+                    My Wishlists
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* LIBRARIAN LINKS */}
 
