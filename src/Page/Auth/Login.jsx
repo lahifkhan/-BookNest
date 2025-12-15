@@ -33,11 +33,11 @@ const LogIn = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="max-w-5xl mx-auto flex flex-col md:flex-row ">
       <div>
-        <img className="object-contain h-[80vh]" src={loginImg} alt="" />
+        <img className="object-cover h-[80vh]" src={loginImg} alt="" />
       </div>
-      <div className="card w-full max-w-md shrink-0 md:ml-8 flex-1">
+      <div className="card w-full  shrink-0 md:ml-8 flex-1">
         <div className="card-body ">
           <h1 className="text-3xl font-bold">Welcome Back</h1>
           <p>Login with BookNest</p>

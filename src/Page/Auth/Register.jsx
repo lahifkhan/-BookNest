@@ -9,6 +9,8 @@ import useAuth from "../../Hook/useAuth";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import SocialLogin from "./SocialLogin";
 
+import registerImg from "../../assets/3dRegister.png";
+
 const Register = () => {
   const {
     register,
@@ -73,7 +75,8 @@ const Register = () => {
   };
 
   return (
-    <div className="card w-full max-w-md shrink-0 md:ml-8 mx-auto">
+    <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center">
+      <img src={registerImg} alt="" />
       <div className="card-body">
         <h1 className="text-3xl font-bold">Create an Account</h1>
         <p className="mb-4">Register with BookNest</p>
@@ -138,7 +141,7 @@ const Register = () => {
             </div>
 
             <button
-              className="btn btn-primary w-full mt-4"
+              className="btn btn-secondary w-full mt-4"
               type="submit"
               disabled={userMutation.isPending}
             >
