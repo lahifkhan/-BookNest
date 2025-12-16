@@ -46,9 +46,15 @@ const FeaturedAuthors = () => {
     <section className="py-16 bg-base-100 w-11/12 mx-auto">
       {/* Section Heading */}
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold">Featured Author</h2>
-        <p className="text-gray-500 mt-2 max-w-xl mx-auto">
-          Discover popular authors and explore their published works
+        <p className="text-secondary font-bold text-lg">Our Authors</p>
+
+        <h2 className="text-3xl md:text-4xl font-extrabold text-primary mt-2">
+          Featured Writers You’ll Love
+        </h2>
+
+        <p className="text-accent mt-2 max-w-2xl mx-auto">
+          Discover popular authors and explore their most loved books, all in
+          one place.
         </p>
       </div>
 
