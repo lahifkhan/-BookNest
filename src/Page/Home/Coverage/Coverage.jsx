@@ -54,8 +54,8 @@ const Coverage = () => {
         </button>
       </form>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="w-full h-[500px] md:h-[600px] rounded-xl overflow-hidden shadow-md">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-12 items-center">
+        <div className="w-full h-[500px] md:h-[300px] rounded-xl overflow-hidden shadow-md">
           <MapContainer
             center={position}
             zoom={8}
@@ -80,18 +80,16 @@ const Coverage = () => {
           </MapContainer>
         </div>
 
-        <div className="flex justify-center">
-          <div className="relative w-[260px] h-[260px] md:w-[340px] md:h-[340px] lg:w-[600px] lg:h-[600px]">
-            <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-
-            <div className="relative w-full h-full bg-base-100 shadow-md rounded-3xl p-4">
+        {/* <div className="flex justify-center">
+          <div className=" w-[260px] h-[260px] md:w-[340px] md:h-[340px] lg:w-[600px] lg:h-[600px]">
+            <div className=" w-full h-full  shadow-md rounded-3xl">
               <img
                 src={deliveryImg}
                 className="w-full h-full object-cover rounded-2xl"
               />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

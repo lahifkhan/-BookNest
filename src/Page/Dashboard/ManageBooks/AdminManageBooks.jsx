@@ -73,7 +73,7 @@ const AdminManageBooks = () => {
 
   return (
     <div className="w-11/12 mx-auto">
-      <h2 className="text-3xl font-bold mb-6">Manage Books</h2>
+      <h2 className="text-3xl font-bold mb-6 text-accent">Manage Books</h2>
 
       <div className="overflow-x-auto bg-base-100 shadow rounded-lg">
         <table className="table">

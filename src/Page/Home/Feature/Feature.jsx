@@ -34,7 +34,7 @@ const Feature = () => {
         Features of BookNest
       </p>
 
-      <div className=" bg-[#D0E1E7] rounded-xl py-8 px-4">
+      <div className=" bg-base-300 rounded-xl py-8 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {features.map((feature) => (
             <div

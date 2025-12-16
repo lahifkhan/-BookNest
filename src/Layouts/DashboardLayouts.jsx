@@ -1,4 +1,6 @@
 import { Outlet, NavLink, useNavigate } from "react-router";
+import { HiOutlineSparkles } from "react-icons/hi";
+
 import {
   FaBook,
   FaUser,
@@ -17,7 +19,7 @@ import useAuth from "../Hook/useAuth";
 import logoImg from "../assets/open-book_12743688.png";
 import useRole from "../Hook/useRole";
 export default function DashboardLayout() {
-  const { logOut } = useAuth();
+  const { logOut, user } = useAuth();
   const navigate = useNavigate();
   const { role } = useRole();
 
@@ -53,7 +55,10 @@ export default function DashboardLayout() {
               />
             </svg>
           </label>
-          <h2 className="text-xl font-semibold">Dashboard</h2>
+          <h2 className="flex items-center gap-2 text-2xl font-semibold">
+            <HiOutlineSparkles className="text-warning text-3xl" />
+            Good to see you, {user?.displayName}!
+          </h2>
         </nav>
 
         {/* Page Content */}
@@ -63,7 +68,7 @@ export default function DashboardLayout() {
       </div>
 
       {/* Sidebar */}
-      <div className="drawer-side  bg-gradient-to-r from-primary to-secondary text-base-100">
+      <div className="drawer-side  bg-gradient-to-r from-primary to-secondary text-white">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 
         <aside className="w-72  min-h-full p-4 flex flex-col">

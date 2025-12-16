@@ -55,18 +55,18 @@ const ClientTestimonial = () => {
         pauseOnHover={true}
         speed={45}
         gradient={false}
-        className="space-x-6"
+        className="space-x-6 p-3"
       >
         {testimonials.map((item) => (
           <div
             key={item.id}
-            className="relative w-96 bg-[#F8F8F8] p-6 rounded-xl shadow-sm mx-4"
+            className="relative bg-base-100 w-96 p-6 rounded-xl shadow-xl   mx-4"
           >
             {/* Accent Triangle */}
             <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[80px] border-l-primary border-t-[80px] border-t-transparent rounded-bl-xl"></div>
 
             {/* Top Text */}
-            <p className="text-gray-800 text-[15px] leading-relaxed mb-6 relative z-10">
+            <p className="text-gray-500 text-[15px] leading-relaxed mb-6 relative z-10">
               {item.text}
             </p>
 
@@ -81,7 +81,7 @@ const ClientTestimonial = () => {
                 />
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">{item.name}</h4>
+                  <h4 className="font-semibold text-primary">{item.name}</h4>
                   <p className="text-gray-500 text-sm">{item.title}</p>
 
                   {/* Rating */}

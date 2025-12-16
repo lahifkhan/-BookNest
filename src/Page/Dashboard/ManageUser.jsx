@@ -89,7 +89,9 @@ const ManageUser = () => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-semibold">Manage Users ({users.length})</h2>
+      <h2 className="text-3xl text-accent font-semibold">
+        Manage Users ({users.length})
+      </h2>
 
       {/* Search Input */}
       <div className="flex max-w-sm">

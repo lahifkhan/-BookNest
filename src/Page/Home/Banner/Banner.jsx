@@ -6,7 +6,6 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Link } from "react-router";
 
 const BannerSlider = () => {
-  // ==== Only Title, Description & Image ====
   const books = [
     {
       id: 1,
@@ -29,7 +28,9 @@ const BannerSlider = () => {
   ];
 
   return (
-    <div className="w-11/12 mx-auto rounded-2xl bg-[#E2F3FF] overflow-hidden mt-5">
+    <div
+      className={`w-11/12 mx-auto rounded-2xl bg-base-300 overflow-hidden mt-5`}
+    >
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
@@ -48,7 +49,7 @@ const BannerSlider = () => {
 
                 <p className="text-gray-600 text-lg">{book.desc}</p>
 
-                <Link to="/all-books">
+                <Link to="/books">
                   <button className="px-6 btn py-3 btn-secondary text-base-100 rounded-lg font-semibold transition">
                     View All Books
                   </button>

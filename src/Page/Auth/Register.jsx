@@ -84,7 +84,7 @@ const Register = () => {
         <form onSubmit={handleSubmit(registerSubmit)}>
           <fieldset className="fieldset">
             {/* NAME */}
-            <label className="label text-black">Name</label>
+            <label className="label ">Name</label>
             <input
               type="text"
               {...register("name", { required: true })}
@@ -96,7 +96,7 @@ const Register = () => {
             )}
 
             {/* PHOTO */}
-            <label className="label text-black">Photo</label>
+            <label className="label ">Photo</label>
             <input
               type="file"
               {...register("photo", { required: true })}
@@ -107,7 +107,7 @@ const Register = () => {
             )}
 
             {/* EMAIL */}
-            <label className="label text-black">Email</label>
+            <label className="label ">Email</label>
             <input
               type="email"
               {...register("email", { required: true })}
@@ -117,7 +117,7 @@ const Register = () => {
             {errors.email && <p className="text-red-500">Email is required</p>}
 
             {/* PASSWORD */}
-            <label className="label text-black">Password</label>
+            <label className="label ">Password</label>
             <input
               type="password"
               {...register("password", {

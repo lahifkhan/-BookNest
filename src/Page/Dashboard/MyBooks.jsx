@@ -68,7 +68,7 @@ const MyBooks = () => {
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
-            <tr className="text-lg font-semibold text-base-content">
+            <tr className="text-lg font-semibold text-accent">
               <th>#</th>
               <th>Book</th>
               <th>Status</th>
@@ -81,7 +81,7 @@ const MyBooks = () => {
           <tbody>
             {myBooks.map((book, index) => (
               <tr key={book._id}>
-                <td>{index + 1}</td>
+                <td className="text-accent">{index + 1}</td>
 
                 <td>
                   <div className="flex items-center gap-3">
@@ -91,7 +91,7 @@ const MyBooks = () => {
                       className="w-16 h-20 object-cover rounded"
                     />
                     <div>
-                      <p className="font-bold">{book.bookName}</p>
+                      <p className="font-bold text-accent">{book.bookName}</p>
                       <p className="text-sm text-gray-500">
                         by {book.bookAuthor}
                       </p>
@@ -101,11 +101,13 @@ const MyBooks = () => {
 
                 {/* Status */}
                 <td>
-                  <span className="font-semibold">{book.status}</span>
+                  <span className="font-semibold text-accent">
+                    {book.status}
+                  </span>
                 </td>
 
                 {/* price */}
-                <td className="font-semibold">${book.price}</td>
+                <td className="font-semibold text-accent">${book.price}</td>
 
                 {/* edit  */}
                 <td>

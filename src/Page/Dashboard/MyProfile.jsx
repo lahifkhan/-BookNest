@@ -159,7 +159,7 @@ const MyProfile = () => {
               </label>
               <input
                 type="email"
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full "
                 {...register("email")}
                 readOnly
               />
@@ -172,7 +172,7 @@ const MyProfile = () => {
               </label>
               <input
                 type="text"
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full "
                 {...register("role")}
                 readOnly
               />

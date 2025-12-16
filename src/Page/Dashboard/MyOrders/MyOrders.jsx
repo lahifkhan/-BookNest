@@ -72,7 +72,7 @@ const MyOrders = () => {
 
   return (
     <div className="w-11/12 mx-auto">
-      <h2 className="text-3xl font-bold mb-6">My Orders</h2>
+      <h2 className="text-3xl text-accent font-bold mb-6">My Orders</h2>
 
       <div className="overflow-x-auto bg-base-100 rounded-lg shadow">
         <table className="table">

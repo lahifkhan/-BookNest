@@ -33,7 +33,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto flex flex-col md:flex-row ">
+    <div className="max-w-5xl mx-auto flex flex-col md:flex-row mt-8 ">
       <div>
         <img className="object-cover h-[80vh]" src={loginImg} alt="" />
       </div>
@@ -44,7 +44,7 @@ const LogIn = () => {
           <form onSubmit={handleSubmit(handleLogin)}>
             <fieldset className="fieldset">
               {/* email */}
-              <label className="label text-black">Email</label>
+              <label className="label text-base-content">Email</label>
               <input
                 type="email"
                 className="input w-full"
@@ -58,7 +58,7 @@ const LogIn = () => {
               )}
 
               {/* email */}
-              <label className="label text-black">Password</label>
+              <label className="label text-base-content">Password</label>
               <input
                 type="password"
                 className="input w-full"
@@ -90,7 +90,11 @@ const LogIn = () => {
           </form>
           <p>
             Don’t have any account?{" "}
-            <Link state={location.state} to={"/register"} className="">
+            <Link
+              state={location.state}
+              to={"/register"}
+              className="text-blue-500"
+            >
               Register
             </Link>{" "}
           </p>

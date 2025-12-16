@@ -27,7 +27,7 @@ const Invoices = () => {
   return (
     <div className="w-11/12 mx-auto">
       <div className="mb-6 text-center">
-        <h2 className="text-3xl font-bold text-primary">Invoices</h2>
+        <h2 className="text-3xl font-bold text-accent">Invoices</h2>
         <p className="text-gray-500 mt-1">
           All your completed payments are listed here
         </p>

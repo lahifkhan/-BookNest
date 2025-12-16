@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/open-book_12743688.png";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../Hook/useAuth";
@@ -6,11 +6,22 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut, loading } = useAuth();
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const handleLogOut = () => {
     logOut()
       .then(() => toast.success("Account Logged Out"))
       .catch((err) => toast.error(err));
   };
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   return (
     <div className="navbar bg-base-100  w-11/12 mx-auto text-primary">
       <div className="navbar-start">
@@ -47,9 +58,9 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="flex items-center">
-          <img src={logo} className="w-10 h-10" alt="" />
-          <a className=" text-xl text-primary font-bold">BookNest</a>
+        <div className="flex items-center gap-1">
+          <img src={logo} className="w-8 h-8 md:w-10 md:h-10" alt="" />
+          <a className="text-sm md:text-xl text-primary font-bold">BookNest</a>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -66,6 +77,12 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end flex gap-1">
+        <input
+          onChange={(e) => handleTheme(e.target.checked)}
+          type="checkbox"
+          defaultChecked={localStorage.getItem("theme") === "dark"}
+          className="toggle mr-2"
+        />
         {loading ? (
           <span className="loading loading-spinner loading-md"></span>
         ) : user ? (
@@ -80,19 +97,22 @@ const Navbar = () => {
 
             <button
               onClick={handleLogOut}
-              className="btn btn-secondary font-bold"
+              className="btn btn-sm md:btn-md btn-secondary font-bold"
             >
               Log Out
             </button>
           </div>
         ) : (
           <div className="flex gap-2">
-            <Link to="/logIn" className="btn btn-primary text-white font-bold">
+            <Link
+              to="/logIn"
+              className="btn btn-sm md:btn-md btn-primary text-white font-bold"
+            >
               LogIn
             </Link>
             <Link
               to="/register"
-              className="btn btn-primary text-white font-bold"
+              className="btn btn-sm md:btn-md btn-primary text-white font-bold"
             >
               Sign Up
             </Link>

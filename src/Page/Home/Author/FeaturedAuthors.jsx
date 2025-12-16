@@ -1,6 +1,6 @@
 import Marquee from "react-fast-marquee";
 import { FaBook } from "react-icons/fa";
-import laurelImg from "../../../assets/laurel.jpg";
+import laurelImg from "../../../assets/laurel.png";
 
 const FeaturedAuthors = () => {
   const authors = [
@@ -76,7 +76,7 @@ const FeaturedAuthors = () => {
                     src={author.img}
                     alt={author.name}
                     className="w-20 h-20 rounded-full object-cover z-10
-                               border-2 border-warning bg-white"
+                               border-2 border-warning bg-base-100"
                   />
                 </div>
 
