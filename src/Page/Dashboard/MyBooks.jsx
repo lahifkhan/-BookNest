@@ -4,6 +4,7 @@ import useAxiosSecure from "../../Hook/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import Loader from "../../Components/Shared/Loader";
 
 const MyBooks = () => {
   const { user } = useAuth();
@@ -54,11 +55,7 @@ const MyBooks = () => {
   };
 
   if (isPending) {
-    return (
-      <div className="text-center py-10">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <Loader></Loader>;
   }
 
   return (

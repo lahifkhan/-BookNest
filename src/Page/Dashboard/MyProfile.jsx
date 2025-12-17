@@ -6,6 +6,7 @@ import useRole from "../../Hook/useRole";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import Loader from "../../Components/Shared/Loader";
 
 const MyProfile = () => {
   const { user: authUser, loading: authLoading } = useAuth();
@@ -105,7 +106,7 @@ const MyProfile = () => {
     }
   };
 
-  if (authLoading || isLoading) return <p>Loading...</p>;
+  if (authLoading || isLoading) return <Loader></Loader>;
   if (!user) return <p>User not found</p>;
 
   return (

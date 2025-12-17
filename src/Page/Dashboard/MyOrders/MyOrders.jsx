@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import useAuth from "../../../Hook/useAuth";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import Loader from "../../../Components/Shared/Loader";
 
 const MyOrders = () => {
   const { user } = useAuth();
@@ -68,7 +69,7 @@ const MyOrders = () => {
     window.location.href = res.data.url;
   };
 
-  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
+  if (isLoading) return <Loader></Loader>;
 
   return (
     <div className="w-11/12 mx-auto">

@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 import useAuth from "../../../Hook/useAuth";
+import Loader from "../../../Components/Shared/Loader";
 
 const LibrarianOrders = () => {
   const { user } = useAuth();
@@ -70,7 +71,7 @@ const LibrarianOrders = () => {
   };
 
   if (isLoading) {
-    return <p className="text-center mt-10">Loading orders...</p>;
+    return <Loader></Loader>;
   }
 
   return (

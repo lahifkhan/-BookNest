@@ -1,5 +1,6 @@
 import { Outlet, NavLink, useNavigate } from "react-router";
 import { HiOutlineSparkles } from "react-icons/hi";
+import { SiSimpleanalytics } from "react-icons/si";
 
 import {
   FaBook,
@@ -86,6 +87,15 @@ export default function DashboardLayout() {
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 <FaHome /> Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/analytics"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                <SiSimpleanalytics />
+                Analytics
               </NavLink>
             </li>
           </ul>

@@ -39,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/book-details/:id",
-        Component: BookDetails,
+        element: (
+          <PrivateRoute>
+            <BookDetails></BookDetails>
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -62,6 +66,10 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        Component: statistic,
+      },
+      {
+        path: "analytics",
         Component: statistic,
       },
       {

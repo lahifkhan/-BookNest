@@ -8,6 +8,7 @@ import DetailsTab from "./DetailsTab";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../Hook/useAuth";
+import Loader from "../../Components/Shared/Loader";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -95,7 +96,7 @@ const BookDetails = () => {
     }
   };
 
-  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
+  if (isLoading) return <Loader></Loader>;
 
   return (
     <div className="w-11/12 mx-auto p-6">

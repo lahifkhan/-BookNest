@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import useAuth from "../../../Hook/useAuth";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import Loader from "../../../Components/Shared/Loader";
 
 const Invoices = () => {
   const { user } = useAuth();
@@ -17,11 +18,7 @@ const Invoices = () => {
   });
 
   if (isLoading) {
-    return (
-      <div className="text-center mt-10">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <Loader></Loader>;
   }
 
   return (

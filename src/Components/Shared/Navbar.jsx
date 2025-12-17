@@ -23,7 +23,7 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
   return (
-    <div className="navbar bg-base-100  w-11/12 mx-auto text-primary">
+    <div className="navbar   w-11/12 mx-auto text-primary bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -48,7 +48,7 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow font-semibold"
           >
             <li>
-              <NavLink>Home</NavLink>
+              <NavLink to={"/"}>Home</NavLink>
             </li>
             <li>
               <NavLink to={"/books"}>Books</NavLink>
@@ -66,13 +66,40 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 font-semibold">
           <li>
-            <NavLink>Home</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "px-4 py-2 rounded-lg text-primary font-semibold bg-primary/10 border border-primary/30 backdrop-blur-sm"
+                  : "px-4 py-2 rounded-lg hover:bg-primary/5 transition-all duration-300"
+              }
+              to={"/"}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/books"}>Books</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "px-4 py-2 rounded-lg text-primary font-semibold bg-primary/10 border border-primary/30 backdrop-blur-sm"
+                  : "px-4 py-2 rounded-lg hover:bg-primary/5 transition-all duration-300"
+              }
+              to={"/books"}
+            >
+              Books
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard"}>DashBoard</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "px-4 py-2 rounded-lg text-primary font-semibold bg-primary/10 border border-primary/30 backdrop-blur-sm"
+                  : "px-4 py-2 rounded-lg hover:bg-primary/5 transition-all duration-300"
+              }
+              to={"/dashboard"}
+            >
+              DashBoard
+            </NavLink>
           </li>
         </ul>
       </div>

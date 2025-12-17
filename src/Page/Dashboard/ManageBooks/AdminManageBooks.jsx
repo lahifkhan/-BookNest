@@ -1,6 +1,7 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import Loader from "../../../Components/Shared/Loader";
 
 const AdminManageBooks = () => {
   const axiosSecure = useAxiosSecure();
@@ -68,7 +69,7 @@ const AdminManageBooks = () => {
   };
 
   if (isLoading) {
-    return <p className="text-center mt-10">Loading books...</p>;
+    return <Loader></Loader>;
   }
 
   return (
