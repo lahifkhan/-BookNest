@@ -1,16 +1,167 @@
-# React + Vite
+# BookNest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**BookNest** is a full-stack MERN-based online book management and ordering platform with role-based access control.  
+It includes advanced search & filtering, real-time analytics dashboards, and secure online payments.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Purpose
 
-## React Compiler
+The purpose of BookNest is to build a real-world, scalable online book platform where:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Users can search, filter, purchase, review, and wishlist books
+- Librarians can manage books and process orders
+- Admins can manage users and roles
+- Analytics dashboards visualize real data using charts
+- Payments are handled securely using Stripe
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Live Website
+
+🔗 **Live URL:**  
+👉 https://book-nest-orpin-theta.vercel.app/
+
+---
+
+## User Roles & Features
+
+### User Features
+
+- Secure authentication using Firebase
+- Browse all books with **search & filtering**
+  - Search by book name
+  - Filter by category / availability
+- Add and remove books from wishlist
+- Place orders and make secure payments using **Stripe**
+- Cancel orders (before delivery)
+- View order history and real-time order status
+- Submit book reviews and ratings after purchase
+- Fully responsive UI
+
+---
+
+### Librarian Features
+
+- Librarian-only dashboard
+- Add new books with image upload
+- Update book details and availability
+- View all orders placed by users
+- Update order status:
+  - `Pending`
+  - `Shipped`
+  - `Delivered`
+- Manage latest added books
+
+---
+
+### Admin Features
+
+- Admin-only dashboard
+- View all registered users
+- Change user roles:
+  - User
+  - Librarian
+  - Admin
+- Platform access and role management
+
+---
+
+## Dashboard Analytics (Recharts)
+
+- Interactive analytics dashboard using **Recharts**
+- Real backend data visualization
+- Includes:
+
+  - Published vs Unpublished books
+  - Order statistics
+
+- Combination of **Bar Chart & Other Chart types**
+- Helps admins and librarians track platform performance
+
+---
+
+## Search & Filtering System
+
+- Implemented in **All Books** section
+- Real-time search functionality
+- Filter books by:
+  - Category
+  - Availability
+- Optimized for better user experience and performance
+
+---
+
+## Payment System
+
+- Integrated **Stripe Payment Gateway**
+- Secure checkout process
+- Payment verification before order confirmation
+- Order cancellation logic based on delivery status
+
+---
+
+##Tech Stack
+
+### Frontend
+
+- React
+- React Router DOM
+- Tailwind CSS
+- DaisyUI
+- Axios
+- React Hook Form
+- SweetAlert2
+- **Recharts**
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Firebase Admin SDK
+- JWT (JSON Web Token)
+- Stripe
+
+### Deployment
+
+- Client: Vercel
+- Server: Vercel
+- Database: MongoDB Atlas
+
+---
+
+## NPM Packages Used
+
+### Frontend
+
+- `react`
+- `react-router-dom`
+- `axios`
+- `react-hook-form`
+- `sweetalert2`
+- `tailwindcss`
+- `daisyui`
+- `recharts`
+
+### Backend
+
+- `express`
+- `cors`
+- `mongodb`
+- `jsonwebtoken`
+- `dotenv`
+- `firebase-admin`
+- `stripe`
+
+---
+
+## Environment Variables
+
+### Client (.env)
+
+```env
+VITE_api_url=your_api_url
+VITE_image_host=your_imgbb_api_key
+VITE_firebase_apiKey=your_firebase_key
+```
