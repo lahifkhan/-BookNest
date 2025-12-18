@@ -1,11 +1,27 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import deliveryImg from "../../../assets/delivery.jpg";
+
+// Marker images
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+// Fix marker icon issue (Vercel production fix)
+const defaultIcon = L.icon({
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+L.Marker.prototype.options.icon = defaultIcon;
 
 const Coverage = () => {
   const [stores, setStores] = useState([]);
-  const mapRef = useRef();
+  const mapRef = useRef(null);
 
   useEffect(() => {
     fetch("/warehouse.json")
@@ -15,81 +31,73 @@ const Coverage = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const location = e.target.location.value;
+    const location = e.target.location.value.toLowerCase();
+
     const district = stores.find((store) =>
-      store.district.toLowerCase().includes(location.toLowerCase())
+      store.district.toLowerCase().includes(location)
     );
-    if (district) {
-      const coordinates = [district.latitude, district.longitude];
-      mapRef.current.flyTo(coordinates, 14);
+
+    if (district && mapRef.current) {
+      mapRef.current.flyTo([district.latitude, district.longitude], 13, {
+        animate: true,
+      });
     }
   };
 
-  const position = [23.685, 90.3563];
+  const centerPosition = [23.685, 90.3563]; // Bangladesh center
 
   return (
     <section className="px-4 md:px-16 py-20">
+      {/* Header */}
       <div className="text-center mb-6">
         <p className="text-secondary font-bold text-lg">Our Coverage</p>
         <h2 className="text-3xl md:text-4xl font-extrabold text-primary mt-2">
           Delivering Across Bangladesh
         </h2>
         <p className="text-accent mt-2 max-w-2xl mx-auto">
-          Check our service areas and find out if we deliver to your district.
+          Search your district to see delivery coverage.
         </p>
       </div>
 
-      <form onSubmit={handleSearch} className="join flex justify-center my-8">
+      {/* Search */}
+      <form onSubmit={handleSearch} className="flex justify-center my-8 gap-2">
         <input
           type="search"
           name="location"
           placeholder="Search District"
-          className="input join-item px-4 py-2"
+          className="input input-bordered w-60"
         />
-        <button
-          type="submit"
-          className="btn join-item rounded-r-full btn-primary"
-        >
+        <button type="submit" className="btn btn-primary">
           Search
         </button>
       </form>
 
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-12 items-center">
-        <div className="w-full h-[500px] md:h-[300px] rounded-xl overflow-hidden shadow-md">
-          <MapContainer
-            center={position}
-            zoom={8}
-            scrollWheelZoom={false}
-            className="w-full h-full"
-            ref={mapRef}
-          >
-            <TileLayer
-              attribution="&copy; OpenStreetMap contributors"
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+      {/* Map */}
+      <div className="w-full h-[500px] rounded-xl overflow-hidden shadow-lg">
+        <MapContainer
+          center={centerPosition}
+          zoom={7}
+          scrollWheelZoom={false}
+          className="w-full h-full"
+          whenCreated={(mapInstance) => {
+            mapRef.current = mapInstance;
+          }}
+        >
+          <TileLayer
+            attribution="&copy; OpenStreetMap contributors"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
 
-            {stores.map((store, idx) => (
-              <Marker key={idx} position={[store.latitude, store.longitude]}>
-                <Popup>
-                  {store.district}
-                  <br />
-                  {store.covered_area.join(", ")}
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
-        </div>
-
-        {/* <div className="flex justify-center">
-          <div className=" w-[260px] h-[260px] md:w-[340px] md:h-[340px] lg:w-[600px] lg:h-[600px]">
-            <div className=" w-full h-full  shadow-md rounded-3xl">
-              <img
-                src={deliveryImg}
-                className="w-full h-full object-cover rounded-2xl"
-              />
-            </div>
-          </div>
-        </div> */}
+          {stores.map((store, index) => (
+            <Marker key={index} position={[store.latitude, store.longitude]}>
+              <Popup>
+                <strong>{store.district}</strong>
+                <br />
+                {store.covered_area.join(", ")}
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
       </div>
     </section>
   );
