@@ -34,7 +34,7 @@ const AddBook = () => {
       const bookData = {
         bookName: data.name,
         bookAuthor: data.author,
-        price: data.price,
+        price: Number(data.price),
         status: data.status,
         description: data.description,
         bookImage: photoURL,
