@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 import BookCard from "../../../Components/Book/BookCard";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const LatestBooks = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,6 +15,10 @@ const LatestBooks = () => {
       return res.data;
     },
   });
+
+  useEffect(() => {
+    AOS.refresh();
+  }, [books]);
 
   if (isLoading) {
     return (
@@ -35,8 +42,10 @@ const LatestBooks = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {books.map((book) => (
-          <BookCard book={book} key={book._id}></BookCard>
+        {books.map((book, index) => (
+          <div key={book._id} data-aos="fade-up" data-aos-delay={index * 100}>
+            <BookCard book={book} />
+          </div>
         ))}
       </div>
 
