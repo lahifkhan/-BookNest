@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/open-book_12743688.png";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const Navbar = () => {
   const { user, logOut, loading } = useAuth();
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   const handleLogOut = () => {
     logOut()
       .then(() => toast.success("Account Logged Out"))
       .catch((err) => toast.error(err));
   };
 
-  const handleTheme = (checked) => {
-    setTheme(checked ? "dark" : "light");
-  };
-
-  useEffect(() => {
-    const html = document.querySelector("html");
-    html.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
   return (
     <div className="navbar   w-11/12 mx-auto text-primary bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20">
       <div className="navbar-start">
@@ -105,11 +98,12 @@ const Navbar = () => {
       </div>
       <div className="navbar-end flex gap-1">
         <input
-          onChange={(e) => handleTheme(e.target.checked)}
           type="checkbox"
-          defaultChecked={localStorage.getItem("theme") === "dark"}
           className="toggle mr-2"
+          onChange={(e) => toggleTheme(e.target.checked)}
+          checked={theme === "dark"}
         />
+
         {loading ? (
           <span className="loading loading-spinner loading-md"></span>
         ) : user ? (
